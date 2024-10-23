@@ -5,18 +5,23 @@ import java.util.Arrays;
 public class Main {
 	public static void main(String[] args) {
 		MyArrayList<String> list = new MyArrayList<>();
-		list.add("Hello");
-		list.add("World");
-		// list.add("Java", 1); // Adding "Java" at index 1
-		System.out.println(list); // Output: [Hello, Java, World]
 
-		list.remove("Java");
-		System.out.println(list); // Output: [Hello, World]
+		for (int i = 0; i <= 100; i++)
+			list.add(String.valueOf(i));
 
-		System.out.println(list.get(0)); // Output: Hello
-		System.out.println(list.contains("World")); // Output: true
-		System.out.println(list.contains("Java")); // Output: false
+		System.out.println(list.get(100));
+		System.out.println("Deleted: " + list.remove("2"));
+		System.out.println(list);
+		System.out.println("Deleted: " + list.removeByIndex(99));
+		System.out.println(list);
+
+		try {
+			System.out.println(list.get(152));
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println(e.getMessage());
+		}
 	}
+
 }
 
 interface IMyList<T> {
@@ -24,7 +29,13 @@ interface IMyList<T> {
 
 	void add(T data);
 
-	void remove(T data);
+	void add(T data, int index);
+
+	boolean remove(T data);
+
+	boolean removeByIndex(int index);
+
+	boolean equals(MyArrayList another);
 
 	boolean contains(T data);
 }
@@ -56,24 +67,78 @@ class MyArrayList<T> implements IMyList<T> {
 	}
 
 	@Override
-	public T get(int index) {
-		if (index < 0 || index >= size) {
-			throw new ArrayIndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+	public void add(T data, int index) {
+		if (index < 0 || index > size) {
+			throw new ArrayIndexOutOfBoundsException("Index: " + index + ", but Size: " + size);
 		}
-		return (T) elementData[index]; // Warning cuz of сasting to T
+
+		if (size == capacity) {
+			grow();
+		}
+
+		for (int i = size; i > index; i--) {
+			elementData[i] = elementData[i - 1];
+		}
+
+		elementData[index] = data;
+
+		size++;
 	}
 
 	@Override
-	public void remove(T data) {
+	public T get(int index) {
+		if (index < 0 || index >= size) {
+			throw new ArrayIndexOutOfBoundsException("Index: " + index + ",but Size: " + size);
+		}
+
+		return (T) elementData[index];
+	}
+
+	@Override
+	public boolean remove(T data) {
 		for (int i = 0; i < size; i++) {
 			if (elementData[i].equals(data)) {
-				// Shift elements left
-				System.arraycopy(elementData, i + 1, elementData, i, size - i - 1);
-				// Clear the last element
-				elementData[--size] = null;
-				return;
+				removeByIndex(i);
+				return true;
 			}
 		}
+		return false;
+	}
+
+	@Override
+	public boolean removeByIndex(int index) {
+		if (index < 0 || index >= size) {
+			throw new ArrayIndexOutOfBoundsException("Index: " + index + ", but Size: " + size);
+		}
+
+		// Сдвигаем элементы влево, начиная с удаляемого индекса
+		for (int i = index; i < size - 1; i++) {
+			elementData[i] = elementData[i + 1];
+		}
+
+		// Очищаем последний элемент
+		elementData[--size] = null;
+		return true;
+	}
+
+	@Override
+	public boolean equals(MyArrayList another) {
+		if (this == another)
+			return true;
+		if (!(another instanceof MyArrayList))
+			return false;
+
+		if (size != another.size) {
+			return false;
+		}
+
+		for (int i = 0; i < size; i++) {
+			if (!elementData[i].equals(another.elementData[i])) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	@Override
