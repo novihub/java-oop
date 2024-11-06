@@ -8,11 +8,10 @@ import java.util.stream.Collectors;
 public class GroupStudentsByGrade_4ex {
     public static void main(String[] args) {
         List<Student> students = Arrays.asList(
-                new Student("Alice", 10),
-                new Student("Bob", 9),
-                new Student("Charlie", 10),
-                new Student("Dave", 9),
-                new Student("Eve", 8));
+                new Student("Maxim", 10),
+                new Student("Alisher", 9),
+                new Student("Janele", 10),
+                new Student("Toma", 8));
 
         Map<Integer, List<Student>> groupedByGrade = students.stream()
                 .collect(Collectors.groupingBy(student -> student.grade));

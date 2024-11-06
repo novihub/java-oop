@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class WordLengthStatistics_5ex {
 	public static void main(String[] args) {
-		List<String> words = Arrays.asList("apple", "banana", "cherry", "date", "elderberry", "fig", "grape");
+		List<String> words = Arrays.asList("apple", "banana", "cherry", "date");
 
 		Map<Integer, Long> wordLengthCount = words.stream()
 				.collect(Collectors.groupingBy(String::length, Collectors.counting()));

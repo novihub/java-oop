@@ -30,9 +30,9 @@ public class ProductInventoryManager_3ex {
 
     public static void main(String[] args) {
         ProductInventoryManager_3ex manager = new ProductInventoryManager_3ex();
-        manager.addProduct(1, "Laptop", 1200.00);
-        manager.addProduct(2, "Smartphone", 700.00);
-        manager.addProduct(3, "Tablet", 400.00);
+        manager.addProduct(1, "Iphone", 2345.00);
+        manager.addProduct(2, "Android", 345.00);
+        manager.addProduct(3, "MacBook", 12345.00);
 
         System.out.println("All Products:");
         manager.listProducts();
