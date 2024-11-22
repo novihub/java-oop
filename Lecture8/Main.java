@@ -44,7 +44,7 @@ public class Main {
         hashSet.add("Red");
         hashSet.add("Green");
         hashSet.add("Blue");
-        hashSet.add("Red"); // Дубликат не будет добавленё
+        hashSet.add("Red"); // Дубликат не будет добавлен
         System.out.println(hashSet);
         System.out.println();
 
