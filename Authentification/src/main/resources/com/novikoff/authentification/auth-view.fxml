@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<VBox alignment="CENTER" spacing="15.0" style="-fx-padding: 250px 150px; -fx-font-family: 'JetBrains Mono', sans-serif;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.novikoff.authentification.AuthController">
+    <!-- Background StackPane with Image -->
+    <StackPane>
+
+        <!-- Main form UI -->
+        <VBox alignment="CENTER" spacing="15.0" style="-fx-alignment: center; -fx-spacing: 15px;">
+            <TextField fx:id="usernameField" prefHeight="42.0" prefWidth="295.0" promptText="Username" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-padding: 10px; -fx-font-size: 14px; -fx-border-color: #cccccc; -fx-border-width: 1px;" />
+
+            <PasswordField fx:id="passwordField" promptText="Password" style="-fx-background-color: #ffffff; -fx-border-radius: 5px; -fx-padding: 10px; -fx-font-size: 14px; -fx-border-color: #cccccc; -fx-border-width: 1px;" />
+
+            <HBox alignment="CENTER" spacing="10.0">
+                <Button fx:id="registerButton" onAction="#registerUser" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-border-radius: 5px; -fx-border-color: #1976D2; -fx-cursor: hand; -fx-font-weight: bold;" text="Register" />
+
+                <Button fx:id="loginButton" onAction="#loginUser" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-border-radius: 5px; -fx-border-color: #1976D2; -fx-cursor: hand; -fx-font-weight: bold;" text="Login" />
+            </HBox>
+
+            <Label fx:id="statusLabel" style="-fx-text-fill: #777; -fx-font-size: 12px; -fx-font-style: italic;" text="" />
+        </VBox>
+    </StackPane>
+</VBox>
